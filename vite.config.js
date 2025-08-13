@@ -1,3 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-export default defineConfig({ plugins:[react()], base:'/github-resume/' })
+
+// User site: https://g-tiwari.github.io/
+export default defineConfig({
+  plugins: [react()],
+  base: '/', // IMPORTANT
+})
