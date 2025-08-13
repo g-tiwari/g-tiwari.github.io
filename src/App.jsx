@@ -1,13 +1,282 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ExternalLink, ArrowDownRight, ArrowRight, Circle } from 'lucide-react'
-const Section=({id,children,className=''})=> <section id={id} className={`min-h-screen w-full flex items-center ${className}`}>{children}</section>
-const Container=({children,className=''})=> <div className={`mx-auto w-full max-w-6xl px-6 md:px-10 ${className}`}>{children}</div>
-const DotNav=()=> <div className='fixed right-6 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4 z-50'>{['top','work','about','contact'].map(s=><a key={s} href={`#${s}`} className='group'><span className='sr-only'>{s}</span><span className='block w-2.5 h-2.5 rounded-full bg-neutral-400/60 group-hover:bg-black transition'/></a>)}</div>
-const Hero=()=> <Section id='top' className='relative bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-white'><div className='absolute inset-0 [background:radial-gradient(60rem_40rem_at_50%_-10%,#3a3a3a_0%,transparent_55%),radial-gradient(35rem_25rem_at_80%_30%,#181818_0%,transparent_60%)]'/><Container className='relative'><div className='grid grid-cols-1 md:grid-cols-12 items-center gap-10 py-28'><div className='md:col-span-7'><motion.h1 initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.7}} className='text-5xl md:text-7xl font-black tracking-tight leading-[0.95]'>Gaurav Tiwari</motion.h1><motion.p initial={{opacity:0,y:20}} animate={{opacity:1,y:0,transition:{delay:0.1}}} className='mt-6 text-lg md:text-xl text-neutral-300 max-w-2xl'>Selenium Conf speaker • Builder of VoiceAutomationClient/Server • Test automation across Web, iOS, Android & TV. Based in the San Francisco Bay Area.</motion.p><motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0,transition:{delay:0.2}}} className='mt-8 flex flex-wrap gap-4'><a href='#work' className='inline-flex items-center gap-2 rounded-2xl bg-white text-black px-5 py-3 font-medium shadow hover:shadow-lg transition'>See Work <ArrowRight size={18}/></a><a href='#contact' className='inline-flex items-center gap-2 rounded-2xl border border-white/30 px-5 py-3 font-medium hover:bg-white/10 transition'>Get in touch <ArrowDownRight size={18}/></a></motion.div></div><div className='md:col-span-5'><motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} transition={{duration:0.6,delay:0.1}} className='relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/10'><img src='https://avatars.githubusercontent.com/u/14981307?v=4' alt='Gaurav Tiwari portrait' className='w-full h-full object-cover'/><div className='absolute inset-0 bg-gradient-to-tr from-black/50 via-transparent to-black/10'/><div className='absolute bottom-4 left-4 flex items-center gap-2 text-xs text-white/80'><Circle size={8}/> Available for consulting</div></motion.div></div></div></Container><Marquee/></Section>
-const Marquee=()=> <div className='relative overflow-hidden border-y border-neutral-800 bg-neutral-950 py-3'><div className='animate-[scroll_25s_linear_infinite] whitespace-nowrap text-neutral-400'>{['WebdriverIO','TypeScript','React Native','Android','iOS','Oracle SQL','PL/SQL','Accessibility (WCAG/EAA)','AI Code Review','Amazon Q'].map((t,i)=><span key={i} className='mx-6 inline-flex items-center gap-2'><span className='w-1.5 h-1.5 rounded-full bg-neutral-600 inline-block'/> {t}</span>)}</div><style>{`@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}`}</style></div>
-const projects=[{title:'VoiceAutomationClient',desc:'Java client that sends TTS or URL playback requests to a remote VoiceAutomationServer for voice UI testing.',tags:['Java','Testing','TTS'],link:'https://github.com/g-tiwari/VoiceAutomationClient',media:'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop'},{title:'GoogleVoiceTest',desc:'Sample Selenium tests using VoiceAutomationClient/Server to drive Google Voice interactions.',tags:['Selenium','Java','Automation'],link:'https://github.com/g-tiwari/GoogleVoiceTest',media:'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1600&auto=format&fit=crop'},{title:'AutoEase-Framework',desc:'Experimentation with automation framework patterns and utilities.',tags:['Java','Framework','Testing'],link:'https://github.com/g-tiwari/AutoEase-Framework',media:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop'}]
-const Work=()=> <Section id='work' className='bg-white'><Container><div className='mb-10'><h2 className='text-3xl md:text-5xl font-black tracking-tight'>Selected Work</h2><p className='mt-3 text-neutral-600 max-w-2xl'>A few projects that reflect my focus on reliability, performance, and developer experience.</p></div><div className='grid grid-cols-1 md:grid-cols-3 gap-6'>{projects.map(p=><a key={p.title} href={p.link} className='group relative rounded-3xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-xl transition'><div className='aspect-[4/3] overflow-hidden'><img src={p.media} alt={p.title} className='h-full w-full object-cover group-hover:scale-105 transition duration-500'/></div><div className='p-5'><div className='flex items-center justify-between gap-4'><h3 className='text-xl font-semibold'>{p.title}</h3><ExternalLink size={18} className='opacity-60 group-hover:opacity-100'/></div><p className='mt-2 text-sm text-neutral-600'>{p.desc}</p><div className='mt-3 flex flex-wrap gap-2'>{p.tags.map(t=><span key={t} className='text-xs rounded-full border px-2 py-1 text-neutral-600'>{t}</span>)}</div></div><div className='pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-t from-black/40 to-transparent'/></a>)}</div></Container></Section>
-const About=()=> <Section id='about' className='bg-neutral-50'><Container><div className='grid grid-cols-1 md:grid-cols-12 gap-10 py-6'><div className='md:col-span-6'><h2 className='text-3xl md:text-5xl font-black tracking-tight'>About</h2><p className='mt-4 text-neutral-700 leading-relaxed'>I craft automation tooling and AI-assisted developer workflows. Selenium Conference speaker. Builder of VoiceAutomationClient/Server. Passionate about clean abstractions, meaningful metrics, and humane developer experience.</p><ul className='mt-6 space-y-2 text-neutral-700'><li>• Cross‑platform testing for Web · iOS · Android · TV</li><li>• Repo‑aware code review & deterministic test generation</li><li>• Oracle SQL/PLSQL performance tuning; CI hardening</li></ul></div><div className='md:col-span-6'><div className='grid grid-cols-2 gap-4'>{[{k:'Years',v:'10+'},{k:'Platforms',v:'Web · iOS · Android · TV'},{k:'Stack',v:'TS · RN · WDIO · Appium · Java'},{k:'Talks',v:'Selenium Conf'}].map(i=><div key={i.k} className='rounded-2xl border bg-white p-5 shadow-sm'><div className='text-sm text-neutral-500'>{i.k}</div><div className='mt-1 text-2xl font-semibold'>{i.v}</div></div>)}</div></div></div></Container></Section>
-const Contact=()=> <Section id='contact' className='bg-neutral-950 text-white'><Container><div className='py-12'><h2 className='text-3xl md:text-5xl font-black tracking-tight'>Let’s build something reliable.</h2><p className='mt-4 text-neutral-300 max-w-2xl'>Open to principal/lead roles, consulting engagements, and collaborations on tooling, test infra, and accessibility.</p><div className='mt-8 flex flex-wrap items-center gap-4'><a href='mailto:you@example.com' className='inline-flex items-center gap-2 rounded-2xl bg-white text-black px-5 py-3 font-medium shadow hover:shadow-lg transition'><Mail size={18}/> Email me</a><a href='https://github.com/g-tiwari' className='inline-flex items-center gap-2 rounded-2xl border border-white/30 px-5 py-3 font-medium hover:bg-white/10 transition'><Github size={18}/> GitHub</a><a href='https://www.linkedin.com/in/gaurav-tiwari/' className='inline-flex items-center gap-2 rounded-2xl border border-white/30 px-5 py-3 font-medium hover:bg-white/10 transition'><Linkedin size={18}/> LinkedIn</a></div></div><footer className='border-t border-white/10 py-6 flex items-center justify-between text-sm text-white/60'><div>© {new Date().getFullYear()} Gaurav Tiwari</div><div className='flex items-center gap-4'><a href='#top' className='hover:text-white'>Back to top</a></div></footer></Container></Section>
-export default function App(){return <main className='font-[ui-sans-serif] antialiased selection:bg-neutral-800 selection:text-white'><DotNav/><Hero/><Work/><About/><Contact/></main>}
+import React, { useState, useMemo } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { MapPin, Calendar, ExternalLink, List, History, Link as LinkIcon } from "lucide-react"
+import ParallaxHero from "./components/ParallaxHero"
+import ThemeToggle from "./components/ThemeToggle"
+import { asset } from "./lib/asset"
+
+const TIMELINE = [
+  { date: "Jan 2025 – Present", title: "Senior Software Development Engineer (SDE‑III), Amazon", location: "San Francisco Bay Area · On‑site",
+    bullets: [
+      "Led EAA accessibility compliance across React Native and native Android/iOS clients.",
+      "Integrated accessibility‑testability tooling for earlier defect detection and faster remediation.",
+      "Drove core development and test automation for Bigscreen TV clients (Fire TV, Apple TV, Roku).",
+      "Partnered with engineering leadership to align development strategy and automation architecture with the long‑term roadmap.",
+      "Built and maintained features across Spring Boot services and front‑end TV clients.",
+      "Bootstrapped AI‑driven accessibility documentation with Amazon Q to standardize best practices.",
+      "Applied deterministic AI models to enhance E2E testing and auto‑generate unit/integration tests."
+    ], links: [] },
+  { date: "Sep 2023 – Dec 2024", title: "Senior Software Development Engineer in Test (SDET‑III), Amazon",
+    location: "San Francisco Bay Area · On‑site",
+    bullets: [
+      "Directed cross‑platform automation strategy for React Native and native mobile apps.",
+      "Built low‑level white‑box integration test frameworks for deep component validation.",
+      "Mentored teams on E2E cross‑platform automation with WebdriverIO + TypeScript; implemented coverage enforcement in CI/CD."
+    ], links: [] },
+  { date: "Sep 2021 – Sep 2023", title: "Software Development Engineer in Test II (SDET‑II), Amazon",
+    location: "San Francisco Bay Area", bullets: [], links: [] },
+  { date: "Jan 2021 – Sep 2021", title: "SDET‑II, Amazon", location: "Bengaluru, India · On‑site",
+    bullets: [
+      "Spearheaded an E2E automation framework in Java + Selenium for a Desktop Music container app (C++ + Vue).",
+      "Established CI/CD automation processes and integrated quality gates into build pipelines.",
+      "Stack: C++, Core Java, JavaScript, Jenkins."
+    ], links: [] },
+  { date: "Aug 2017 – Jan 2021", title: "Quality Assurance Engineer II, Amazon", location: "Bangalore · On‑site",
+    bullets: [
+      "Led test automation for Fire TV and TV application platforms.",
+      "Designed Selenium‑based frameworks for web and hybrid apps; championed early automation in new product lines."
+    ], links: [] },
+  { date: "Jul 2015 – Jul 2017", title: "Automation Quality Engineer II, S&P Global Market Intelligence",
+    location: "Gurgaon, India",
+    bullets: [
+      "Built and maintained automation suites using Selenium, Java, Rest‑Assured, Appium, and SQL Server.",
+      "Owned a shared automation framework used by 100+ engineers; managed Bitbucket/Maven reusable repositories.",
+      "Deployed infra with 20+ VMs, Selenium Grid, Jenkins; created automation dashboard and documentation."
+    ], links: [] },
+  { date: "Jan 2015 – Jun 2015", title: "Senior Software Engineer, Optimus Information Inc.", location: "Noida, India · On‑site",
+    bullets: [
+      "Delivered custom test automation frameworks across web and mobile for multiple client apps.",
+      "Led framework selection & implementation (Selenium WebDriver, Appium, Jenkins)."
+    ], links: [] },
+  { date: "Sep 2012 – Dec 2014", title: "Software Engineer, Optimus Information Inc.", location: "Noida, India · On‑site",
+    bullets: [
+      "Built and maintained automation frameworks for web and mobile using Selenium and Appium.",
+      "Developed reusable testing components to reduce maintenance and speed delivery."
+    ], links: [] },
+]
+
+const PROJECTS = [
+  { title: "VoiceAutomationClient", desc: "Java client that sends TTS or URL playback requests to a remote VoiceAutomationServer for voice UI testing.", tags: ["Java","Testing","TTS"], link: "https://github.com/g-tiwari/VoiceAutomationClient", media: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop" },
+  { title: "GoogleVoiceTest", desc: "Sample Selenium tests using VoiceAutomationClient/Server to drive Google Voice interactions.", tags: ["Selenium","Java","Automation"], link: "https://github.com/g-tiwari/GoogleVoiceTest", media: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1600&auto=format&fit=crop" },
+  { title: "AutoEase-Framework", desc: "Experimentation with automation framework patterns and utilities.", tags: ["Java","Framework","Testing"], link: "https://github.com/g-tiwari/AutoEase-Framework", media: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop" },
+]
+
+const SKILLS = ["WebdriverIO","Appium","TypeScript","Java","React Native","iOS","Android","Oracle SQL/PLSQL","Accessibility (WCAG/EAA)","CI/CD","AI‑assisted reviews (Amazon Q)"]
+const EDUCATION = []
+const RESUME_LINK = ""
+
+function Tabs({ tab, setTab }) {
+  const items = useMemo(() => ([
+    { id: "journey", label: "Journey", icon: History },
+    { id: "projects", label: "Projects & Resume", icon: List },
+  ]), [])
+
+  return (
+    <div className="sticky top-0 z-20 bg-[var(--surface)] backdrop-blur border-b border-token">
+      <nav className="mx-auto max-w-4xl px-6 md:px-10 py-3 flex gap-2 items-center justify-between">
+        <div className="flex gap-2">
+          {items.map(({ id, label, icon: Icon }) => {
+            const active = tab === id
+            return (
+              <button
+                key={id}
+                onClick={() => setTab(id)}
+                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition ${
+                  active
+                    ? "bg-[var(--tab-active-bg)] text-[var(--tab-active-fg)] shadow"
+                    : "bg-surface text-body border border-token hover:bg-surface2"
+                }`}
+                aria-current={active ? "page" : undefined}
+              >
+                <Icon size={16} /> {label}
+              </button>
+            )
+          })}
+        </div>
+        <ThemeToggle />
+      </nav>
+    </div>
+  )
+}
+
+function TimelineItem({ item }) {
+  return (
+    <li className="relative ms-6">
+      <span className="absolute -start-3 top-1.5 h-2.5 w-2.5 rounded-full bg-neutral-900 dark:bg-white" />
+      <div className="flex flex-wrap items-baseline gap-x-3">
+        <div className="text-xs uppercase tracking-wide text-muted flex items-center gap-1">
+          <Calendar size={14}/> {item.date}
+        </div>
+        {item.location && (
+          <div className="text-xs text-muted flex items-center gap-1"><MapPin size={14}/> {item.location}</div>
+        )}
+      </div>
+      <h3 className="mt-1 text-xl font-semibold">{item.title}</h3>
+      {item.bullets?.length ? (
+        <ul className="mt-2 list-disc ps-5 text-neutral-700 dark:text-neutral-300 space-y-1">
+          {item.bullets.map((b, i) => <li key={i}>{b}</li>)}
+        </ul>
+      ) : null}
+    </li>
+  )
+}
+
+function Journey() {
+  return (
+    <section className="bg-surface text-body">
+      <div className="mx-auto w-full max-w-4xl px-6 md:px-10 py-6 md:py-10">
+        <header className="mb-8 md:mb-10">
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight">Journey</h2>
+          <p className="mt-2 text-muted">A chronological look at work, talks, and releases.</p>
+        </header>
+
+        {/* === About section on top === */}
+        <section aria-labelledby="about-heading" className="mb-10 md:mb-12 rounded-2xl border border-token bg-surface2 p-5 md:p-6">
+          <h3 id="about-heading" className="text-xl md:text-2xl font-semibold">About</h3>
+          <p className="mt-3 text-neutral-700 dark:text-neutral-300">
+            Innovative and results-driven Senior Software Development Engineer (SDE-III) with 13+ years of expertise in
+            test automation architecture, cross-platform framework design, and quality engineering leadership across web,
+            mobile, desktop, and TV platforms.
+          </p>
+          <p className="mt-3 text-neutral-700 dark:text-neutral-300">
+            Proven track record of delivering scalable, maintainable, and high-coverage automation solutions that accelerate
+            release cycles, improve product reliability, and ensure compliance with stringent accessibility standards.
+          </p>
+
+        <div className="mt-6">
+            <h4 className="text-lg font-semibold">Career Highlights</h4>
+            <ul className="mt-3 list-disc ps-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li><strong>Leadership &amp; Mentorship:</strong> Guided cross-functional teams, influenced test strategy, and mentored engineers on automation best practices.</li>
+              <li><strong>Accessibility Compliance (EAA):</strong> Drove Android, iOS, and React Native accessibility gap remediation; implemented automation tools for accessibility verification.</li>
+              <li><strong>React Native Testing:</strong> Architected white-box integration frameworks, enforced code coverage in CI/CD, and built an E2E automation framework in TypeScript with WebdriverIO.</li>
+              <li><strong>Framework Design &amp; Architecture:</strong> Created robust automation frameworks for web, mobile, desktop, and TV apps using Selenium WebDriver, WebdriverIO (TypeScript), and low-level integration tools.</li>
+              <li><strong>Specialization in Early-Stage Testing:</strong> Expert in embedding quality checks early in the development lifecycle, shifting focus from reactive defect fixing to preventive bug detection.</li>
+              <li><strong>Amazon Fire TV &amp; Bigscreen Apps:</strong> Led automation strategy and framework development for Fire TV and TV applications, enabling reliable large-scale deployments.</li>
+              <li><strong>Desktop Chrome Container App:</strong> Delivered test automation for hybrid C++ and Vue.js applications with a Selenium-based framework.</li>
+            </ul>
+          </div>
+
+          <p className="mt-6 text-neutral-700 dark:text-neutral-300">
+            I specialize in transforming complex testing challenges into streamlined, automated solutions, enabling teams to ship with speed and confidence.
+          </p>
+        </section>
+
+        {/* === Timeline === */}
+        <ol className="relative border-s border-token space-y-8">
+          {TIMELINE.map((item, idx) => <TimelineItem key={idx} item={item} />)}
+        </ol>
+      </div>
+    </section>
+  )
+}
+
+function ProjectCard({ p }) {
+  return (
+    <a href={p.link} className="group block rounded-3xl overflow-hidden border border-token bg-surface2 shadow-sm hover:shadow-xl transition">
+      <div className="aspect-[4/3] overflow-hidden">
+        <img src={p.media} alt={p.title} className="h-full w-full object-cover group-hover:scale-105 transition duration-500" />
+      </div>
+      <div className="p-5">
+        <div className="flex items-center justify-between gap-4">
+          <h3 className="text-lg font-semibold">{p.title}</h3>
+          <ExternalLink size={18} className="opacity-60 group-hover:opacity-100" />
+        </div>
+        <p className="mt-2 text-sm text-muted">{p.desc}</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {p.tags.map((t) => (
+            <span key={t} className="text-[11px] rounded-full border border-token px-2 py-1 text-muted">{t}</span>
+          ))}
+        </div>
+      </div>
+      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-t from-black/40 to-transparent" />
+    </a>
+  )
+}
+
+function ProjectsResume() {
+  return (
+    <section className="bg-surface text-body">
+      <div className="mx-auto w-full max-w-4xl px-6 md:px-10 py-6 md:py-10 space-y-10">
+        <header>
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight">Projects & Resume</h2>
+          <p className="mt-2 text-muted">Open‑source contributions, selected projects, and a compact resume overview.</p>
+        </header>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Open‑Source & Selected Projects</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {PROJECTS.map((p) => <ProjectCard key={p.title} p={p} />)}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Skills</h3>
+          <div className="flex flex-wrap gap-2">
+            {SKILLS.map((s) => (
+              <span key={s} className="text-sm rounded-full border border-token px-3 py-1 text-muted">
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-token pt-5 flex items-center justify-between flex-wrap gap-3">
+          <div className="text-sm text-muted">
+            Want the full CV with details and references? Grab the PDF.
+          </div>
+          <a
+            href={RESUME_LINK || "#"}
+            className={`inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium transition ${RESUME_LINK ? "bg-[var(--accent)] text-[var(--accent-contrast)] hover:brightness-110 ring-2 ring-[var(--ring)] ring-offset-2 ring-offset-[var(--surface)]" : "bg-surface2 text-muted border border-token cursor-not-allowed"}`}
+            onClick={(e) => { if (!RESUME_LINK) e.preventDefault() }}
+          >
+            <ExternalLink size={16} /> Download Resume (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default function App() {
+  const [tab, setTab] = useState("journey")
+  return (
+    <main className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-surface text-body">
+      <aside className="relative md:sticky md:top-0 h-[45vh] md:h-screen">
+        <ParallaxHero src="images/golden-gate.webp" alt="Golden Gate Bridge in morning fog" speed={0.18} className="h-full">
+          <div className="my-4 sm:my-20 sm:mx-8 flex flex-col sm:items-end text-center sm:text-right text-xs sm:text-base">
+            <div className="flex flex-col items-center mb-6">
+              <img
+                alt="Gaurav Tiwari"
+                width="128"
+                height="128"
+                decoding="async"
+                className="rounded-full object-cover border-4 border-white/90 mb-4 shadow-[0_10px_40px_rgba(0,0,0,.25)]"
+                src={asset('images/profile.jpg')}
+              />
+              <h1 className="text-2xl sm:text-4xl font-bold text-white">Gaurav Tiwari</h1>
+              <p className="mt-3 max-w-xs sm:max-w-md text-white/95">
+                Senior Software Development Engineer - (SDE-III) | Test Automation Architect | Accessibility Gap Remediation & Framework Design Expert
+              </p>
+            </div>
+          </div>
+        </ParallaxHero>
+      </aside>
+
+      <section className="bg-surface text-body">
+        <Tabs tab={tab} setTab={setTab} />
+        <AnimatePresence mode="wait">
+          {tab === "journey" ? (
+            <motion.div key="journey" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+              <Journey />
+            </motion.div>
+          ) : (
+            <motion.div key="projects" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+              <ProjectsResume />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <footer className="mx-auto max-w-4xl px-6 py-12 text-sm text-muted">© {new Date().getFullYear()} Gaurav Tiwari</footer>
+      </section>
+    </main>
+  )
+}

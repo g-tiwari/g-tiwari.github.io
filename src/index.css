@@ -1,1 +1,68 @@
-@tailwind base;@tailwind components;@tailwind utilities;:root{color-scheme:light dark;}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Theme tokens (base layer so they load with Tailwind reset) === */
+@layer base {
+  :root {
+    --surface: #ffffff;
+    --surface-2: #f7f7f8;
+    --text: #0b1220;       /* dark navy text for better light contrast */
+    --muted: #475569;      /* slate-600 for stronger legibility */
+    --border: #e5e7eb;
+
+    --accent: #c64a2f;     /* bridge orange-red */
+    --accent-contrast: #ffffff;
+    --link: #176b82;       /* bay teal */
+    --ring: rgba(198,74,47,.45);
+
+    --hero-overlay-from: rgba(0,0,0,.28);
+    --hero-overlay-to: rgba(0,0,0,.38);
+    --hero-tint: rgba(198,74,47,.08);
+
+    --tab-active-bg: var(--accent);
+    --tab-active-fg: var(--accent-contrast);
+
+    color-scheme: light dark;
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  :root.dark {
+    --surface: #0b1c2c;
+    --surface-2: #0f2436;
+    --text: #f3f4f6;
+    --muted: #a3acc2;
+    --border: #203345;
+
+    --accent: #ff7a45;
+    --accent-contrast: #0b1c2c;
+    --link: #7bd7ff;
+    --ring: rgba(255,122,69,.45);
+
+    --hero-overlay-from: rgba(0,0,0,.55);
+    --hero-overlay-to: rgba(0,0,0,.75);
+    --hero-tint: rgba(255,122,69,.08);
+
+    --tab-active-bg: var(--accent);
+    --tab-active-fg: var(--accent-contrast);
+
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  html, body, #root {
+    height: 100%;
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  a { color: var(--link); }
+}
+
+/* === Small utility helpers bound to tokens === */
+.bg-surface  { background: var(--surface); }
+.bg-surface2 { background: var(--surface-2); }
+.text-body   { color: var(--text); }
+.text-muted  { color: var(--muted); }
+.border-token{ border-color: var(--border); }
